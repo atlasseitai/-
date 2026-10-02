@@ -14,9 +14,8 @@ import { AccessSection } from './components/AccessSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { EditModal } from './components/EditModal';
-import { SakuraExportModal } from './components/SakuraExportModal';
 import { THEME_CONFIGS } from './utils/theme';
-import { CheckCircle2, Lock, Server } from 'lucide-react';
+import { CheckCircle2, Lock } from 'lucide-react';
 import { 
   persistCompanyData, 
   loadCompanyDataSync, 
@@ -136,7 +135,6 @@ export default function App() {
   });
 
   const [activeEditSection, setActiveEditSection] = useState<string | null>(null);
-  const [showSakuraExportModal, setShowSakuraExportModal] = useState(false);
 
   // Asynchronously hydrate from IndexedDB to restore high-resolution photos and offline changes
   useEffect(() => {
@@ -574,7 +572,6 @@ export default function App() {
       {/* Corporate Sticky Header */}
       <Header
         data={companyData}
-        onOpenSakuraExport={() => setShowSakuraExportModal(true)}
       />
 
       <main className="flex-grow">
@@ -644,22 +641,7 @@ export default function App() {
         header={companyData.header}
         access={companyData.access}
         theme={companyData.theme}
-        onOpenSakuraExport={() => setShowSakuraExportModal(true)}
       />
-
-      {/* Floating Sakura / WordPress Export Button */}
-      <div className="fixed bottom-6 left-6 z-40">
-        <button
-          onClick={() => setShowSakuraExportModal(true)}
-          className="group flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-stone-900/90 hover:bg-stone-900 text-white text-xs font-bold shadow-xl border border-stone-700/80 backdrop-blur-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
-          title="さくらインターネット ファイルマネージャーでWordPressにアップロード"
-        >
-          <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-          <Server className="w-3.5 h-3.5 text-amber-400" />
-          <span className="hidden sm:inline">さくら・WP公開用ZIP</span>
-          <span className="sm:hidden">WP公開</span>
-        </button>
-      </div>
 
       {/* 12. Modal Section Editor */}
       {activeEditSection && (
@@ -670,14 +652,6 @@ export default function App() {
             handleUpdateData(updated);
           }}
           onClose={() => setActiveEditSection(null)}
-        />
-      )}
-
-      {/* 13. Sakura Internet & WordPress Deployment Modal */}
-      {showSakuraExportModal && (
-        <SakuraExportModal
-          onClose={() => setShowSakuraExportModal(false)}
-          onToast={showGlobalToast}
         />
       )}
 

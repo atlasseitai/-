@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { CompanyData } from '../types';
 import { THEME_CONFIGS } from '../utils/theme';
-import { Building2, Phone, Mail, Menu, X, ArrowRight, Server } from 'lucide-react';
+import { Building2, Phone, Mail, Menu, X, ArrowRight } from 'lucide-react';
 import fallbackLogoImg from '../assets/images/corporate_brand_icon_1789095307732.jpg';
 
 interface HeaderProps {
   data: CompanyData;
-  onOpenSakuraExport?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ data, onOpenSakuraExport }) => {
+export const Header: React.FC<HeaderProps> = ({ data }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const theme = THEME_CONFIGS[data.theme] || THEME_CONFIGS.beige;
 
@@ -90,18 +89,6 @@ export const Header: React.FC<HeaderProps> = ({ data, onOpenSakuraExport }) => {
               </div>
             )}
 
-            {onOpenSakuraExport && (
-              <button
-                onClick={onOpenSakuraExport}
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200/80 font-bold text-xs transition-colors cursor-pointer shadow-xs"
-                title="さくらインターネット・WordPress公開用ZIPをダウンロード"
-              >
-                <Server className="w-3.5 h-3.5 text-amber-700" />
-                <span className="hidden xl:inline">さくら・WP公開用ZIP</span>
-                <span className="xl:hidden">WP公開</span>
-              </button>
-            )}
-
             <a
               href="#contact"
               className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg ${theme.secondaryBg} font-semibold text-xs sm:text-sm shadow-sm transition-all hover:shadow-md cursor-pointer`}
@@ -113,17 +100,6 @@ export const Header: React.FC<HeaderProps> = ({ data, onOpenSakuraExport }) => {
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center gap-2">
-            {onOpenSakuraExport && (
-              <button
-                onClick={onOpenSakuraExport}
-                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-amber-50 text-amber-900 border border-amber-200 font-bold text-xs"
-                title="WP公開ZIP"
-              >
-                <Server className="w-3.5 h-3.5 text-amber-700" />
-                <span>WP公開</span>
-              </button>
-            )}
-
             <a
               href="#contact"
               className={`inline-flex items-center px-3 py-1.5 rounded-md ${theme.secondaryBg} font-semibold text-xs sm:hidden`}

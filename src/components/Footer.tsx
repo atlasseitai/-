@@ -1,16 +1,15 @@
 import React from 'react';
 import { CompanyHeader, CompanyAccess, ThemeColor } from '../types';
 import { THEME_CONFIGS } from '../utils/theme';
-import { Building2, ArrowUp, Mail, Phone, MapPin, Server } from 'lucide-react';
+import { Building2, ArrowUp, Mail, Phone, MapPin } from 'lucide-react';
 
 interface FooterProps {
   header: CompanyHeader;
   access: CompanyAccess;
   theme?: ThemeColor;
-  onOpenSakuraExport?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ header, access, theme = 'beige', onOpenSakuraExport }) => {
+export const Footer: React.FC<FooterProps> = ({ header, access, theme = 'beige' }) => {
   const themeCfg = THEME_CONFIGS[theme] || THEME_CONFIGS.beige;
   const isBeige = theme === 'beige';
 
@@ -130,15 +129,6 @@ export const Footer: React.FC<FooterProps> = ({ header, access, theme = 'beige',
         <div className={`mt-12 pt-8 border-t ${isBeige ? 'border-[#e2d5c3] text-[#8a7662]' : 'border-slate-800/80 text-slate-500'} flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]`}>
           <div className="flex flex-wrap items-center gap-4">
             <p>© {new Date().getFullYear()} {header.companyNameEn || header.companyName}. All Rights Reserved.</p>
-            {onOpenSakuraExport && (
-              <button
-                onClick={onOpenSakuraExport}
-                className="inline-flex items-center gap-1.5 hover:text-amber-700 text-slate-500 transition-colors cursor-pointer font-medium"
-              >
-                <Server className="w-3.5 h-3.5 text-amber-600" />
-                <span>さくら・WP公開用ZIP</span>
-              </button>
-            )}
           </div>
 
           <button
