@@ -1,0 +1,6 @@
+{
+  "name": "アトラスリラクゼーションサービス合同会社",
+  "description": "アトラスリラクゼーションサービス合同会社の公式コーポレートサイト。直営サロン運営、提携先ホテルでのリラクゼーション業務、セラピスト派遣、一般社団法人日本整体師会での整体スクール運営、メナード化粧品代行店をご案内いたします。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
