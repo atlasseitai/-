@@ -61,11 +61,16 @@ function sanitizeWithBundledImages(data: CompanyData): CompanyData {
   // Executives
   if (Array.isArray(result.executives)) {
     result.executives = result.executives.map((exec, idx) => {
+      let updatedExec = { ...exec };
       const defaultImg = DEFAULT_COMPANY_DATA.executives[idx]?.imageUrl;
-      if (!exec.imageUrl && defaultImg) {
-        return { ...exec, imageUrl: defaultImg };
+      if (!updatedExec.imageUrl && defaultImg) {
+        updatedExec.imageUrl = defaultImg;
       }
-      return exec;
+      if (updatedExec.name && updatedExec.name.replace(/\s+/g, '') === '高橋健太郎') {
+        updatedExec.name = '西田 健一';
+        updatedExec.nameEn = 'Kenichi Nishida';
+      }
+      return updatedExec;
     });
   }
 
